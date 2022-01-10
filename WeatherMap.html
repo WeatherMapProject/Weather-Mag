@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags Boostrap-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!--Mapbox link/script-->
+	<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet'/>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/Weather_map.css">
+
+	<title>Weather Map</title>
+</head>
+<body>
+<h1>Daily forecast</h1>
+
+<!--Boostrap Navbar dark to navigate with map implementation later. Currently, has breakpoints want to keep for mobile version of site later. Might have to adjust-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
+	<!--Make Navbar 1st position not link w/ custom text-->
+	<!--	<a class="navbar-brand" href="#">Navbar</a>-->
+	<span class="navbar-brand">Weather for you!</span>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+	        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<!--Links on navbar. Will customize at later time-->
+
+	<!--Search bar. Find way to make connect to map functionality-->
+	<form class="form-inline my-2 my-lg-0">
+		<input class="form-control mr-sm-2" id="userSearch" type="search" placeholder="Enter City, State" aria-label="Search">
+		<button class="btn btn-outline-success my-2 my-sm-0" id="searchValue" type="submit">Search</button>
+	</form>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="https://java.codeup.com/jquery/ajax/weather-map/" target="_blank">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://www.google.com/maps" target="_blank">Google Maps</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<!--Space between navbar and map-->
+<br>
+<!--Added map to page with spacing-->
+<div class="container-fluid">
+	<div id="map" class="container"></div>
+	<br>
+	<!--Added space below map to create collapse labels, info is now displayed-->
+	<nav>
+		<div>
+
+			<!--Today's button-->
+			<button class="btn btn-primary today" type="button" data-toggle="collapse" data-target="#collapseToday"
+			        aria-expanded="false" aria-controls="collapseExample">
+				Today's Weather
+			</button>
+
+			<!--Tomorrow's button-->
+			<button class="btn btn-primary tomorrow" type="button" data-toggle="collapse" data-target="#collapseTomorrow"
+			        aria-expanded="false" aria-controls="collapseExample">
+				Tomorrow's Weather
+			</button>
+
+			<!--Day 3 Button-->
+			<button class="btn btn-primary day3" type="button" data-toggle="collapse"
+			        data-target="#collapseDay3"
+			        aria-expanded="false" aria-controls="collapseExample">
+				Day 3 Weather
+			</button>
+
+			<!--Day 4 Button-->
+			<button class="btn btn-primary day4" type="button" data-toggle="collapse"
+			        data-target="#collapseDay4"
+			        aria-expanded="false" aria-controls="collapseExample">
+				Day 4 Weather
+			</button>
+
+			<!--Day 5 Button-->
+			<button class="btn btn-primary day5" type="button" data-toggle="collapse" data-target="#collapseDay5"
+			        aria-expanded="false" aria-controls="collapseExample">
+				Day 5 Weather
+			</button>
+		</div>
+
+		<!--Today's weather info-->
+		<div class="collapse weatherInfo" id="collapseToday">
+			<div class="card card-body bg-dark text-white">
+				Today's Weather information:
+			</div>
+		</div>
+
+		<!--Tomorrow's weather info-->
+		<div class="collapse weatherInfo" id="collapseTomorrow">
+			<div class="card card-body bg-dark text-white">
+				Tomorrow's Weather information:
+			</div>
+		</div>
+
+		<!--Day 3 weather info-->
+		<div class="collapse weatherInfo" id="collapseDay3">
+			<div class="card card-body bg-dark text-white">
+				Day 3 Weather information
+			</div>
+		</div>
+
+		<!--Day 4 weather info-->
+		<div class="collapse weatherInfo" id="collapseDay4">
+			<div class="card card-body bg-dark text-white">
+				Day 4 Weather information
+			</div>
+		</div>
+
+		<!--Day 5 weather info-->
+		<div class="collapse weatherInfo" id="collapseDay5">
+			<div class="card card-body bg-dark text-white">
+				Day 5 Weather information
+			</div>
+		</div>
+	</nav>
+</div>
+
+
+<!--jQuery and Bootstrap Bundle-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+<!--jquery added for Ajax work-->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+<script src="keys.js"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+<script src="js/weather_map.js"></script>
+
+
+</body>
+</html>
